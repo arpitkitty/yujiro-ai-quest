@@ -1,7 +1,5 @@
-import { Card } from "@/components/ui/card"
 import { Progress } from "@/components/ui/progress"
-import { Badge } from "@/components/ui/badge"
-import { Check, Flame } from "lucide-react"
+import { CheckCircle, Flame } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 interface DailyQuestProps {
@@ -25,51 +23,78 @@ export const DailyQuest = ({
 }: DailyQuestProps) => {
   const percentage = (progress / maxProgress) * 100
 
-  const typeColors = {
-    strength: "bg-red-500/20 text-red-400 border-red-500/30",
-    intelligence: "bg-blue-500/20 text-blue-400 border-blue-500/30",
-    health: "bg-green-500/20 text-green-400 border-green-500/30"
+  const getTypeIcon = () => {
+    switch (type) {
+      case 'strength': return '💪'
+      case 'intelligence': return '🧠'  
+      case 'health': return '❤️'
+      default: return '⭐'
+    }
   }
 
   return (
-    <Card className={cn(
-      "p-4 transition-glow",
-      completed ? "border-primary/50 glow-fire" : "hover:border-primary/30"
+    <div className={cn(
+      "p-4 rounded-lg border transition-glow cursor-pointer group card-glass",
+      completed 
+        ? "border-primary/50 glow-neon bg-primary/5" 
+        : "border-border/30 hover:border-primary/30 hover:glow-neon"
     )}>
-      <div className="flex items-start justify-between mb-3">
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-1">
-            <h4 className="font-semibold text-sm">{title}</h4>
-            {completed && (
-              <div className="flex items-center justify-center w-5 h-5 rounded-full bg-primary/20 border border-primary/50">
-                <Check className="w-3 h-3 text-primary" />
-              </div>
-            )}
-          </div>
-          <p className="text-xs text-muted-foreground mb-2">{description}</p>
+      <div className="flex items-center gap-4">
+        <div className={cn(
+          "w-12 h-12 rounded-full border-2 flex items-center justify-center transition-smooth",
+          completed 
+            ? "bg-primary border-primary text-primary-foreground glow-neon" 
+            : "border-muted bg-background/50 group-hover:border-primary/50"
+        )}>
+          {completed ? (
+            <CheckCircle className="w-6 h-6" />
+          ) : (
+            <div className="text-sm font-bold text-muted-foreground group-hover:text-primary transition-colors">
+              {getTypeIcon()}
+            </div>
+          )}
         </div>
-        
-        <Badge variant="outline" className={cn("ml-2", typeColors[type])}>
-          <Flame className="w-3 h-3 mr-1" />
-          {xpReward} XP
-        </Badge>
-      </div>
 
-      <div className="space-y-2">
-        <div className="flex justify-between text-xs">
-          <span className="text-muted-foreground">
-            Progress: {progress}/{maxProgress}
-          </span>
-          <span className="text-foreground font-medium">
-            {Math.round(percentage)}%
-          </span>
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center justify-between mb-2">
+            <h4 className={cn(
+              "font-bold text-base tracking-wide",
+              completed ? "text-primary" : "text-foreground"
+            )}>
+              {title}
+            </h4>
+            <div className="flex items-center gap-2 px-3 py-1 bg-primary/20 border border-primary/30 rounded-full">
+              <Flame className="w-4 h-4 text-primary" />
+              <span className="font-bold text-primary text-sm">+{xpReward}</span>
+            </div>
+          </div>
+          
+          <p className="text-sm text-muted-foreground mb-3 leading-relaxed">
+            {description}
+          </p>
+
+          <div className="space-y-2">
+            <div className="flex justify-between text-sm">
+              <span className="text-muted-foreground font-medium">
+                Progress: {progress}/{maxProgress}
+              </span>
+              <span className={cn(
+                "font-bold",
+                completed ? "text-primary" : "text-foreground"
+              )}>
+                {Math.round(percentage)}%
+              </span>
+            </div>
+            <div className="progress-glow">
+              <Progress 
+                value={percentage} 
+                variant={type}
+                className="h-2 bg-muted/30 border border-primary/20"
+              />
+            </div>
+          </div>
         </div>
-        <Progress 
-          value={percentage} 
-          variant={completed ? "fire" : type}
-          className="h-2"
-        />
       </div>
-    </Card>
+    </div>
   )
 }

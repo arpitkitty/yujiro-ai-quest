@@ -2,56 +2,61 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Yujiro Mode - Dark Anime Design System */
+/* Arise AI - Dark Minimal Anime Design System */
 
 @layer base {
   :root {
-    /* Dark anime background colors */
-    --background: 220 25% 8%;
+    /* Pure black backgrounds for minimal aesthetic */
+    --background: 0 0% 3%;
     --foreground: 0 0% 98%;
 
-    --card: 220 25% 10%;
+    --card: 0 0% 6%;
     --card-foreground: 0 0% 98%;
 
-    --popover: 220 25% 10%;
+    --popover: 0 0% 6%;
     --popover-foreground: 0 0% 98%;
 
-    /* Anime-inspired primary colors - fiery red */
-    --primary: 0 85% 60%;
+    /* Neon red primary */
+    --primary: 0 100% 65%;
     --primary-foreground: 0 0% 98%;
 
-    /* Secondary purple accent */
-    --secondary: 270 75% 60%;
+    /* Neon purple secondary */
+    --secondary: 270 100% 70%;
     --secondary-foreground: 0 0% 98%;
 
-    /* Muted dark tones */
-    --muted: 220 25% 15%;
-    --muted-foreground: 220 15% 70%;
+    /* Darker muted tones */
+    --muted: 0 0% 8%;
+    --muted-foreground: 0 0% 60%;
 
-    /* Neon accent colors */
-    --accent: 300 80% 65%;
+    /* Bright neon accent */
+    --accent: 300 100% 75%;
     --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 85% 60%;
+    --destructive: 0 100% 65%;
     --destructive-foreground: 0 0% 98%;
 
-    --border: 220 25% 20%;
-    --input: 220 25% 15%;
-    --ring: 0 85% 60%;
+    --border: 0 0% 12%;
+    --input: 0 0% 8%;
+    --ring: 0 100% 65%;
 
-    --radius: 0.75rem;
+    --radius: 0.875rem;
 
-    /* Custom anime gradient colors */
-    --fire-start: 0 85% 60%;
-    --fire-end: 300 80% 65%;
-    --strength-color: 0 85% 60%;
-    --intelligence-color: 220 85% 60%;
-    --health-color: 120 85% 60%;
+    /* Enhanced neon colors */
+    --neon-red: 0 100% 65%;
+    --neon-purple: 270 100% 70%;
+    --neon-cyan: 180 100% 65%;
+    --strength-color: 0 100% 65%;
+    --intelligence-color: 220 100% 70%;
+    --health-color: 120 100% 65%;
     
-    /* Glow effects */
-    --glow-primary: 0 85% 60%;
-    --glow-secondary: 270 75% 60%;
-    --glow-accent: 300 80% 65%;
+    /* Enhanced glow effects */
+    --glow-primary: 0 100% 65%;
+    --glow-secondary: 270 100% 70%;
+    --glow-accent: 300 100% 75%;
+    
+    /* Professional shadows */
+    --shadow-glow: 0 0 30px;
+    --shadow-soft: 0 8px 32px;
 
     --sidebar-background: 0 0% 98%;
 
@@ -121,56 +126,137 @@
 }
 
 @layer components {
-  /* Anime glow effects */
-  .glow-fire {
-    box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.5), 0 0 40px hsl(var(--glow-primary) / 0.3);
+  /* Professional neon glow effects */
+  .glow-neon {
+    box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.4), 
+                0 0 40px hsl(var(--glow-primary) / 0.2),
+                0 0 60px hsl(var(--glow-primary) / 0.1);
   }
   
   .glow-purple {
-    box-shadow: 0 0 20px hsl(var(--glow-secondary) / 0.5), 0 0 40px hsl(var(--glow-secondary) / 0.3);
+    box-shadow: 0 0 20px hsl(var(--glow-secondary) / 0.4), 
+                0 0 40px hsl(var(--glow-secondary) / 0.2);
   }
   
   .glow-accent {
-    box-shadow: 0 0 20px hsl(var(--glow-accent) / 0.5), 0 0 40px hsl(var(--glow-accent) / 0.3);
+    box-shadow: 0 0 20px hsl(var(--glow-accent) / 0.4), 
+                0 0 40px hsl(var(--glow-accent) / 0.2);
   }
 
-  /* Anime gradients */
-  .gradient-fire {
-    background: linear-gradient(135deg, hsl(var(--fire-start)), hsl(var(--fire-end)));
+  /* Professional card styling */
+  .card-glass {
+    background: linear-gradient(145deg, 
+      hsl(var(--card) / 0.8), 
+      hsl(var(--card) / 0.6));
+    backdrop-filter: blur(20px);
+    border: 1px solid hsl(var(--border) / 0.3);
+    box-shadow: var(--shadow-soft) hsl(0 0% 0% / 0.3);
+  }
+
+  .card-neon {
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--primary) / 0.3);
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.1),
+                inset 0 1px 0 hsl(0 0% 100% / 0.1);
+  }
+
+  /* Enhanced gradients */
+  .gradient-neon {
+    background: linear-gradient(135deg, 
+      hsl(var(--neon-red)), 
+      hsl(var(--neon-purple)));
   }
   
   .gradient-strength {
-    background: linear-gradient(90deg, hsl(var(--strength-color)), hsl(var(--strength-color) / 0.7));
+    background: linear-gradient(90deg, 
+      hsl(var(--strength-color)), 
+      hsl(var(--strength-color) / 0.6));
   }
   
   .gradient-intelligence {
-    background: linear-gradient(90deg, hsl(var(--intelligence-color)), hsl(var(--intelligence-color) / 0.7));
+    background: linear-gradient(90deg, 
+      hsl(var(--intelligence-color)), 
+      hsl(var(--intelligence-color) / 0.6));
   }
   
   .gradient-health {
-    background: linear-gradient(90deg, hsl(var(--health-color)), hsl(var(--health-color) / 0.7));
+    background: linear-gradient(90deg, 
+      hsl(var(--health-color)), 
+      hsl(var(--health-color) / 0.6));
   }
 
-  /* Pulsing animation for important elements */
+  /* Advanced animations */
   .pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite alternate;
+    animation: pulse-glow 3s ease-in-out infinite;
   }
   
   @keyframes pulse-glow {
-    from {
-      box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.5);
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.3);
     }
-    to {
-      box-shadow: 0 0 30px hsl(var(--glow-primary) / 0.8), 0 0 60px hsl(var(--glow-primary) / 0.4);
+    50% {
+      box-shadow: 0 0 30px hsl(var(--glow-primary) / 0.6), 
+                  0 0 60px hsl(var(--glow-primary) / 0.3);
     }
   }
 
-  /* Smooth transitions */
+  .level-up {
+    animation: level-up 0.8s ease-out;
+  }
+  
+  @keyframes level-up {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.8; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .progress-glow {
+    position: relative;
+    overflow: visible;
+  }
+  
+  .progress-glow::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    box-shadow: 0 0 15px hsl(var(--primary) / 0.5);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  .progress-glow:hover::after {
+    opacity: 1;
+  }
+
+  /* Smooth professional transitions */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  
   .transition-glow {
-    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    transition: box-shadow 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
   }
   
   .transition-glow:hover {
     transform: translateY(-2px);
+    border-color: hsl(var(--primary) / 0.5);
+  }
+
+  /* Typography enhancements */
+  .text-glow {
+    text-shadow: 0 0 10px hsl(var(--primary) / 0.8);
+  }
+  
+  .text-gradient {
+    background: linear-gradient(135deg, 
+      hsl(var(--neon-red)), 
+      hsl(var(--neon-purple)));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
