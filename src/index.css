@@ -2,41 +2,56 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* Yujiro Mode - Dark Anime Design System */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Dark anime background colors */
+    --background: 220 25% 8%;
+    --foreground: 0 0% 98%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 25% 10%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 25% 10%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Anime-inspired primary colors - fiery red */
+    --primary: 0 85% 60%;
+    --primary-foreground: 0 0% 98%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary purple accent */
+    --secondary: 270 75% 60%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted dark tones */
+    --muted: 220 25% 15%;
+    --muted-foreground: 220 15% 70%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Neon accent colors */
+    --accent: 300 80% 65%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 85% 60%;
+    --destructive-foreground: 0 0% 98%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 220 25% 20%;
+    --input: 220 25% 15%;
+    --ring: 0 85% 60%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
+
+    /* Custom anime gradient colors */
+    --fire-start: 0 85% 60%;
+    --fire-end: 300 80% 65%;
+    --strength-color: 0 85% 60%;
+    --intelligence-color: 220 85% 60%;
+    --health-color: 120 85% 60%;
+    
+    /* Glow effects */
+    --glow-primary: 0 85% 60%;
+    --glow-secondary: 270 75% 60%;
+    --glow-accent: 300 80% 65%;
 
     --sidebar-background: 0 0% 98%;
 
@@ -101,5 +116,61 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
+    @apply overflow-x-hidden;
+  }
+}
+
+@layer components {
+  /* Anime glow effects */
+  .glow-fire {
+    box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.5), 0 0 40px hsl(var(--glow-primary) / 0.3);
+  }
+  
+  .glow-purple {
+    box-shadow: 0 0 20px hsl(var(--glow-secondary) / 0.5), 0 0 40px hsl(var(--glow-secondary) / 0.3);
+  }
+  
+  .glow-accent {
+    box-shadow: 0 0 20px hsl(var(--glow-accent) / 0.5), 0 0 40px hsl(var(--glow-accent) / 0.3);
+  }
+
+  /* Anime gradients */
+  .gradient-fire {
+    background: linear-gradient(135deg, hsl(var(--fire-start)), hsl(var(--fire-end)));
+  }
+  
+  .gradient-strength {
+    background: linear-gradient(90deg, hsl(var(--strength-color)), hsl(var(--strength-color) / 0.7));
+  }
+  
+  .gradient-intelligence {
+    background: linear-gradient(90deg, hsl(var(--intelligence-color)), hsl(var(--intelligence-color) / 0.7));
+  }
+  
+  .gradient-health {
+    background: linear-gradient(90deg, hsl(var(--health-color)), hsl(var(--health-color) / 0.7));
+  }
+
+  /* Pulsing animation for important elements */
+  .pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite alternate;
+  }
+  
+  @keyframes pulse-glow {
+    from {
+      box-shadow: 0 0 20px hsl(var(--glow-primary) / 0.5);
+    }
+    to {
+      box-shadow: 0 0 30px hsl(var(--glow-primary) / 0.8), 0 0 60px hsl(var(--glow-primary) / 0.4);
+    }
+  }
+
+  /* Smooth transitions */
+  .transition-glow {
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+  }
+  
+  .transition-glow:hover {
+    transform: translateY(-2px);
   }
 }
