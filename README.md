@@ -71,3 +71,31 @@ Yes, you can!
 To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
 
 Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+
+## License System - Quick Start
+
+1) Generate keys (owner machine only)
+- ES256 recommended:
+  - openssl ecparam -genkey -name prime256v1 -noout -out private-key.pem
+  - openssl ec -in private-key.pem -pubout -out public-key.pem
+- Replace client public key: copy your public-key.pem into src/lib/license/public-key.pem
+
+2) Create a customer license
+- node admin/generate-key.js --user=USER_123 --features='["premium","boss_mode"]' --expiry=2026-12-31 --key=path/to/private-key.pem
+- Output: yujiro_license.json with { token, meta }
+
+3) Create an OWNER license
+- node admin/generate-owner-key.js --key=path/to/private-key.pem
+
+4) Install the license
+- Easiest: place yujiro_license.json at the web root so the app auto-discovers it
+- Or in app: Unlock → Upload license file or paste token
+
+5) Optional revocation API
+- Run: ts-node server/index.ts (or compile to JS)
+- Revoke: node admin/revoke.js --nonce=abcd1234
+
+Notes
+- Verification is stateless and offline. Only the public key is shipped.
+- Owner license (is_owner:true) unlocks all features regardless of expiry/features.
+- Private key must NEVER be checked into your client app.

@@ -1,13 +1,6 @@
 // Public key for license verification (embedded in client)
-export const PUBLIC_KEY_PEM = `-----BEGIN PUBLIC KEY-----
-MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA1234567890abcdefghijk
-lmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmn
-opqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqr
-stuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvw
-xyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyzAB
-CDEFGHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyzABCDEF
-GHIJKLMNOPQRSTUVWXYZ1234567890abcdefghijklmnopqrstuvwxyzwibq==
------END PUBLIC KEY-----`;
+import PUBLIC_KEY_PEM from './public-key.pem?raw';
+export { PUBLIC_KEY_PEM };
 
 // License file paths for different operating systems
 export const LICENSE_PATHS = {
@@ -30,7 +23,7 @@ export const FEATURES = {
 } as const;
 
 // Revocation check endpoint
-export const REVOCATION_ENDPOINT = '/api/revoked';
+export const REVOCATION_ENDPOINT = '/api/revoked'; // Provided by optional server/index.ts
 
 // Local storage keys
 export const STORAGE_KEYS = {

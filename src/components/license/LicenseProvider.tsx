@@ -32,8 +32,8 @@ export function LicenseProvider({ children }: LicenseProviderProps) {
     const initializeLicense = async () => {
       try {
         setIsLoading(true);
-        
-        // Check for cached license
+
+        // Check for cached license first
         const cached = getCurrentLicense();
         if (cached) {
           const result = quickVerifyLicense();
@@ -43,15 +43,30 @@ export function LicenseProvider({ children }: LicenseProviderProps) {
           } else {
             setError(result.reason || 'License verification failed');
           }
+        } else {
+          // Auto-discover fallback license file from public root (stateless)
+          try {
+            const res = await fetch('/yujiro_license.json', { cache: 'no-store' });
+            if (res.ok) {
+              const text = await res.text();
+              const verifyRes = await verifyLicense(text);
+              if (verifyRes.ok && verifyRes.claims) {
+                setLicense(verifyRes.claims);
+                setError(null);
+              }
+            }
+          } catch (e) {
+            // ignore if not present
+          }
         }
-        
+
         // Record device usage for fraud detection
         FraudHeuristicsAgent.recordDeviceUsage();
-        
+
         // Run security scan
         const alerts = FraudHeuristicsAgent.runSecurityScan();
         setFraudAlerts(alerts);
-        
+
       } catch (err) {
         console.error('License initialization failed:', err);
         setError('Failed to initialize license system');

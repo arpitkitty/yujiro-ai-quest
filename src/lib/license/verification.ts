@@ -73,9 +73,11 @@ export async function verifyLicense(
         const parsed = JSON.parse(licenseInput);
         if (parsed.token) {
           claims = await verifyJWT(parsed.token);
-        } else if (parsed.user_id && parsed.nonce) {
-          // Direct license object
-          claims = parsed;
+        } else if (typeof parsed === 'string' && parsed.includes('.')) {
+          // JSON string containing a JWT
+          claims = await verifyJWT(parsed);
+        } else {
+          return { ok: false, reason: 'Invalid license format' };
         }
       } catch {
         return { ok: false, reason: 'Invalid license format' };
