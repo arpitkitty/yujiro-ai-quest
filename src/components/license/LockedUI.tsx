@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { LicenseUploadModal } from './LicenseUploadModal';
+import { ChatLicenseProcessor } from './ChatLicenseProcessor';
 
 const lockedFeatures = [
   {
@@ -32,6 +33,8 @@ export function LockedUI() {
 
   return (
     <div className="min-h-screen bg-background flex items-center justify-center p-4">
+      <ChatLicenseProcessor onLicenseProcessed={() => {}} />
+      
       <div className="w-full max-w-4xl text-center">
         {/* Hero Section */}
         <motion.div
@@ -61,6 +64,14 @@ export function LockedUI() {
           <Button variant="outline" size="lg">
             Learn More
           </Button>
+          
+          {/* Chat Key Drop Instructions */}
+          <div className="mt-6 bg-primary/5 border border-primary/20 rounded-lg p-4 max-w-xl mx-auto">
+            <p className="text-sm text-muted-foreground">
+              💬 <strong>Quick Access:</strong> Drop your license key directly in the chat for instant unlock!<br/>
+              <span className="text-xs">Problems? DM @driveeon on Instagram</span>
+            </p>
+          </div>
         </motion.div>
 
         {/* Locked Features Grid */}
