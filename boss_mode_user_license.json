@@ -1,0 +1,12 @@
+
+{
+  "token": "eyJhbGciOiJFUzI1NiJ9.eyJ1c2VyX2lkIjoiVVNFUl9CT1NTXzAwMiIsImlzc3VlZF9hdCI6IjIwMjUtMDEtMDNUMTI6MDA6MDAuMDAwWiIsImZlYXR1cmVzIjpbImJvc3NfbW9kZSJdLCJleHBpcnlfaXNvIjoiMjAyNS0wNC0wM1QxMjowMDowMC4wMDBaIiwibm9uY2UiOiIzMzMzMzMzMy00NDQ0LTU1NTUtNjY2Ni03Nzc3Nzc3Nzc3NzciLCJpc19vd25lciI6ZmFsc2V9.example_signature_boss",
+  "meta": {
+    "user_id": "USER_BOSS_002",
+    "issued_at": "2025-01-03T12:00:00.000Z",
+    "features": ["boss_mode"],
+    "expiry_iso": "2025-04-03T12:00:00.000Z",
+    "nonce": "33333333-4444-5555-6666-777777777777",
+    "is_owner": false
+  }
+}

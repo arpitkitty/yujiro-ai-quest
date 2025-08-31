@@ -1,0 +1,12 @@
+
+{
+  "token": "eyJhbGciOiJFUzI1NiJ9.eyJ1c2VyX2lkIjoiVVNFUl9QUkVNSVVNXzAwMSIsImlzc3VlZF9hdCI6IjIwMjUtMDEtMDNUMTI6MDA6MDAuMDAwWiIsImZlYXR1cmVzIjpbInByZW1pdW0iLCJib3NzX21vZGUiLCJwcm9fYW5hbHl0aWNzIl0sImV4cGlyeV9pc28iOiIyMDI2LTAxLTAzVDEyOjAwOjAwLjAwMFoiLCJub25jZSI6IjIyMjIyMjIyLTMzMzMtNDQ0NC01NTU1LTY2NjY2NjY2NjY2NiIsImlzX293bmVyIjpmYWxzZX0.example_signature_premium",
+  "meta": {
+    "user_id": "USER_PREMIUM_001",
+    "issued_at": "2025-01-03T12:00:00.000Z",
+    "features": ["premium", "boss_mode", "pro_analytics"],
+    "expiry_iso": "2026-01-03T12:00:00.000Z",
+    "nonce": "22222222-3333-4444-5555-666666666666",
+    "is_owner": false
+  }
+}

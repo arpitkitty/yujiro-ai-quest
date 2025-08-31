@@ -1,0 +1,12 @@
+
+{
+  "token": "eyJhbGciOiJFUzI1NiJ9.eyJ1c2VyX2lkIjoiT1dORVIiLCJpc3N1ZWRfYXQiOiIyMDI1LTAxLTAzVDEyOjAwOjAwLjAwMFoiLCJmZWF0dXJlcyI6WyIqIl0sImV4cGlyeV9pc28iOm51bGwsIm5vbmNlIjoiMTExMTExMTEtMjIyMi0zMzMzLTQ0NDQtNTU1NTU1NTU1NTU1IiwiaXNfb3duZXIiOnRydWV9.example_signature_owner",
+  "meta": {
+    "user_id": "OWNER",
+    "issued_at": "2025-01-03T12:00:00.000Z",
+    "features": ["*"],
+    "expiry_iso": null,
+    "nonce": "11111111-2222-3333-4444-555555555555",
+    "is_owner": true
+  }
+}

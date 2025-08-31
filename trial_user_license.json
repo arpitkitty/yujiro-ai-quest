@@ -1,0 +1,12 @@
+
+{
+  "token": "eyJhbGciOiJFUzI1NiJ9.eyJ1c2VyX2lkIjoiVVNFUl9UUklBTF8wMDQiLCJpc3N1ZWRfYXQiOiIyMDI1LTAxLTAzVDEyOjAwOjAwLjAwMFoiLCJmZWF0dXJlcyI6WyJwcmVtaXVtIl0sImV4cGlyeV9pc28iOiIyMDI1LTAxLTEwVDEyOjAwOjAwLjAwMFoiLCJub25jZSI6IjU1NTU1NTU1LTY2NjYtNzc3Ny04ODg4LTk5OTk5OTk5OTk5OSIsImlzX293bmVyIjpmYWxzZX0.example_signature_trial",
+  "meta": {
+    "user_id": "USER_TRIAL_004",
+    "issued_at": "2025-01-03T12:00:00.000Z",
+    "features": ["premium"],
+    "expiry_iso": "2025-01-10T12:00:00.000Z",
+    "nonce": "55555555-6666-7777-8888-999999999999",
+    "is_owner": false
+  }
+}
