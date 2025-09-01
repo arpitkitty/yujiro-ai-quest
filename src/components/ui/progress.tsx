@@ -10,6 +10,9 @@ const progressVariants = cva(
       variant: {
         default: "",
         strength: "",
+        agility: "",
+        endurance: "",
+        spirit: "",
         intelligence: "",
         health: "",
         fire: "",
@@ -35,6 +38,9 @@ const progressIndicatorVariants = cva(
       variant: {
         default: "bg-primary",
         strength: "gradient-strength glow-fire",
+        agility: "gradient-agility",
+        endurance: "gradient-endurance", 
+        spirit: "gradient-spirit glow-purple",
         intelligence: "gradient-intelligence glow-purple",
         health: "gradient-health",
         fire: "gradient-fire glow-fire",

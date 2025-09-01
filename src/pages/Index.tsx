@@ -3,50 +3,76 @@ import { DailyQuest } from "@/components/DailyQuest"
 import { PlayerLevel } from "@/components/PlayerLevel"
 import { BossBattle } from "@/components/BossBattle"
 import { Sidebar } from "@/components/Sidebar"
+import { HunterCard } from "@/components/HunterCard"
+import { WorkoutGenerator } from "@/components/WorkoutGenerator"
 import { Card } from "@/components/ui/card"
-import { Dumbbell, Brain, Heart, Target, Calendar } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Badge } from "@/components/ui/badge"
+import { Dumbbell, Brain, Heart, Target, Calendar, Zap, Star, Trophy, User } from "lucide-react"
 
 const Index = () => {
   // Mock data - this would come from your Supabase backend
   const playerData = {
-    name: "Yujiro Warrior",
+    name: "Shadow Hunter",
+    title: "Elite Warrior",
     level: 12,
     currentXP: 2840,
     maxXP: 3000,
+    rank: "Diamond",
+    aura: 4.2,
+    streak: 7,
     stats: {
       strength: { current: 450, max: 500, level: 8 },
-      intelligence: { current: 320, max: 400, level: 6 },
-      health: { current: 180, max: 300, level: 4 }
+      agility: { current: 380, max: 450, level: 7 },
+      endurance: { current: 320, max: 400, level: 6 },
+      spirit: { current: 180, max: 300, level: 4 }
     }
   }
 
   const dailyQuests = [
     {
-      title: "Morning Workout",
-      description: "Complete 20 push-ups and 30 squats",
-      progress: 1,
-      maxProgress: 1,
-      xpReward: 50,
+      title: "Shadow Strike Training",
+      description: "Complete 4 sets of 15 push-ups",
+      progress: 4,
+      maxProgress: 4,
+      xpReward: 150,
+      auraReward: 0.2,
       completed: true,
-      type: "strength" as const
+      type: "strength" as const,
+      difficulty: "Elite"
     },
     {
-      title: "Study Session",
-      description: "Study for 30 minutes",
-      progress: 25,
-      maxProgress: 30,
-      xpReward: 40,
+      title: "Lightning Sprint",
+      description: "15-minute HIIT cardio session",
+      progress: 12,
+      maxProgress: 15,
+      xpReward: 200,
+      auraReward: 0.3,
       completed: false,
-      type: "intelligence" as const
+      type: "agility" as const,
+      difficulty: "Master"
     },
     {
-      title: "Hydration Goal",
-      description: "Drink 8 glasses of water",
-      progress: 6,
-      maxProgress: 8,
-      xpReward: 25,
+      title: "Iron Will Challenge",
+      description: "Hold plank for 2 minutes total",
+      progress: 90,
+      maxProgress: 120,
+      xpReward: 120,
+      auraReward: 0.1,
       completed: false,
-      type: "health" as const
+      type: "endurance" as const,
+      difficulty: "Advanced"
+    },
+    {
+      title: "Meditation Mastery",
+      description: "10 minutes focused breathing",
+      progress: 0,
+      maxProgress: 10,
+      xpReward: 80,
+      auraReward: 0.2,
+      completed: false,
+      type: "spirit" as const,
+      difficulty: "Beginner"
     }
   ]
 
@@ -60,36 +86,58 @@ const Index = () => {
       <div className="flex-1 ml-16">
         {/* Header */}
         <div className="p-6 border-b border-border/30">
-          <div className="flex items-center gap-4">
-            <div className="p-2 rounded-lg card-neon glow-neon">
-              <img 
-                src="/lovable-uploads/5267d277-93f2-4cf0-80d6-d8dba26514f1.png" 
-                alt="Yujiro Mode Logo" 
-                className="w-8 h-8"
-              />
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="p-2 rounded-lg card-neon glow-neon">
+                <img 
+                  src="/lovable-uploads/5267d277-93f2-4cf0-80d6-d8dba26514f1.png" 
+                  alt="Arise Logo" 
+                  className="w-8 h-8"
+                />
+              </div>
+              <div>
+                <h1 className="text-2xl font-bold text-gradient tracking-wide">
+                  ARISE AI
+                </h1>
+                <p className="text-sm text-muted-foreground font-medium">
+                  Level Up Your Fitness Solo
+                </p>
+              </div>
             </div>
-            <div>
-              <h1 className="text-2xl font-bold text-gradient tracking-wide">
-                YUJIRO MODE
-              </h1>
-              <p className="text-sm text-muted-foreground font-medium">
-                Unleash Your Inner Warrior
-              </p>
+            <div className="flex items-center gap-4">
+              <Badge variant="secondary" className="gap-2">
+                <Trophy className="w-4 h-4" />
+                Streak: {playerData.streak} days
+              </Badge>
+              <Badge variant="outline" className="gap-2">
+                <Star className="w-4 h-4" />
+                Aura: {playerData.aura}
+              </Badge>
             </div>
           </div>
         </div>
 
-        <div className="p-6 space-y-6 max-w-4xl mx-auto">
-        {/* Player Level Card */}
-        <PlayerLevel 
-          level={playerData.level}
-          currentXP={playerData.currentXP}
-          maxXP={playerData.maxXP}
-          playerName={playerData.name}
-        />
+        <div className="p-6 space-y-6 max-w-6xl mx-auto">
+        {/* Hunter Card & Quick Actions */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-1">
+            <HunterCard 
+              name={playerData.name}
+              title={playerData.title}
+              level={playerData.level}
+              rank={playerData.rank}
+              aura={playerData.aura}
+              currentXP={playerData.currentXP}
+              maxXP={playerData.maxXP}
+            />
+          </div>
+          <div className="lg:col-span-2">
+            <WorkoutGenerator />
+          </div>
+        </div>
 
-        {/* XP Stats Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {/* Stats Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <XPCard
             title="Strength"
             currentXP={playerData.stats.strength.current}
@@ -99,20 +147,28 @@ const Index = () => {
             variant="strength"
           />
           <XPCard
-            title="Intelligence"
-            currentXP={playerData.stats.intelligence.current}
-            maxXP={playerData.stats.intelligence.max}
-            level={playerData.stats.intelligence.level}
-            icon={<Brain className="w-5 h-5" />}
-            variant="intelligence"
+            title="Agility"
+            currentXP={playerData.stats.agility.current}
+            maxXP={playerData.stats.agility.max}
+            level={playerData.stats.agility.level}
+            icon={<Zap className="w-5 h-5" />}
+            variant="agility"
           />
           <XPCard
-            title="Health"
-            currentXP={playerData.stats.health.current}
-            maxXP={playerData.stats.health.max}
-            level={playerData.stats.health.level}
+            title="Endurance"
+            currentXP={playerData.stats.endurance.current}
+            maxXP={playerData.stats.endurance.max}
+            level={playerData.stats.endurance.level}
             icon={<Heart className="w-5 h-5" />}
-            variant="health"
+            variant="endurance"
+          />
+          <XPCard
+            title="Spirit"
+            currentXP={playerData.stats.spirit.current}
+            maxXP={playerData.stats.spirit.max}
+            level={playerData.stats.spirit.level}
+            icon={<Brain className="w-5 h-5" />}
+            variant="spirit"
           />
         </div>
 

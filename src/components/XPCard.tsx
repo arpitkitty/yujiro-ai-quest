@@ -8,7 +8,7 @@ interface XPCardProps {
   maxXP: number
   level: number
   icon: React.ReactNode
-  variant: "strength" | "intelligence" | "health"
+  variant: "strength" | "agility" | "endurance" | "spirit"
   className?: string
 }
 
@@ -25,15 +25,17 @@ export const XPCard = ({
 
   const variantStyles = {
     strength: "border-red-500/30 hover:border-red-500/50",
-    intelligence: "border-blue-500/30 hover:border-blue-500/50", 
-    health: "border-green-500/30 hover:border-green-500/50"
+    agility: "border-orange-500/30 hover:border-orange-500/50",
+    endurance: "border-blue-500/30 hover:border-blue-500/50", 
+    spirit: "border-purple-500/30 hover:border-purple-500/50"
   }
 
   const getVariantColor = () => {
     switch (variant) {
       case 'strength': return 'text-red-400'
-      case 'intelligence': return 'text-blue-400'
-      case 'health': return 'text-green-400'
+      case 'agility': return 'text-orange-400'
+      case 'endurance': return 'text-blue-400'
+      case 'spirit': return 'text-purple-400'
       default: return 'text-primary'
     }
   }
@@ -49,8 +51,9 @@ export const XPCard = ({
           <div className={cn(
             "p-3 rounded-lg border transition-smooth",
             variant === 'strength' && "bg-red-500/20 border-red-500/30",
-            variant === 'intelligence' && "bg-blue-500/20 border-blue-500/30",
-            variant === 'health' && "bg-green-500/20 border-green-500/30"
+            variant === 'agility' && "bg-orange-500/20 border-orange-500/30",
+            variant === 'endurance' && "bg-blue-500/20 border-blue-500/30",
+            variant === 'spirit' && "bg-purple-500/20 border-purple-500/30"
           )}>
             <div className={getVariantColor()}>{icon}</div>
           </div>

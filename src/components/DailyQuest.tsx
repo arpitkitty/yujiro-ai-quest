@@ -8,8 +8,10 @@ interface DailyQuestProps {
   progress: number
   maxProgress: number
   xpReward: number
+  auraReward: number
   completed?: boolean
-  type: "strength" | "intelligence" | "health"
+  type: "strength" | "agility" | "endurance" | "spirit"
+  difficulty: string
 }
 
 export const DailyQuest = ({
@@ -18,18 +20,28 @@ export const DailyQuest = ({
   progress,
   maxProgress,
   xpReward,
+  auraReward,
   completed = false,
-  type
+  type,
+  difficulty
 }: DailyQuestProps) => {
   const percentage = (progress / maxProgress) * 100
 
   const getTypeIcon = () => {
     switch (type) {
       case 'strength': return '💪'
-      case 'intelligence': return '🧠'  
-      case 'health': return '❤️'
+      case 'agility': return '⚡'
+      case 'endurance': return '❤️'
+      case 'spirit': return '🧠'
       default: return '⭐'
     }
+  }
+
+  const difficultyColors = {
+    Beginner: "text-green-400 bg-green-400/10",
+    Advanced: "text-yellow-400 bg-yellow-400/10", 
+    Elite: "text-orange-400 bg-orange-400/10",
+    Master: "text-red-400 bg-red-400/10"
   }
 
   return (
@@ -57,15 +69,23 @@ export const DailyQuest = ({
 
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between mb-2">
-            <h4 className={cn(
-              "font-bold text-base tracking-wide",
-              completed ? "text-primary" : "text-foreground"
-            )}>
-              {title}
-            </h4>
-            <div className="flex items-center gap-2 px-3 py-1 bg-primary/20 border border-primary/30 rounded-full">
-              <Flame className="w-4 h-4 text-primary" />
-              <span className="font-bold text-primary text-sm">+{xpReward}</span>
+            <div className="flex items-center gap-2">
+              <h4 className={cn(
+                "font-bold text-base tracking-wide",
+                completed ? "text-primary" : "text-foreground"
+              )}>
+                {title}
+              </h4>
+              <span className={`text-xs px-2 py-1 rounded ${difficultyColors[difficulty as keyof typeof difficultyColors] || difficultyColors.Beginner}`}>
+                {difficulty}
+              </span>
+            </div>
+            <div className="flex flex-col items-end gap-1">
+              <div className="flex items-center gap-1 px-2 py-1 bg-primary/20 border border-primary/30 rounded-full">
+                <Flame className="w-3 h-3 text-primary" />
+                <span className="font-bold text-primary text-xs">+{xpReward}</span>
+              </div>
+              <div className="text-xs text-secondary">+{auraReward} Aura</div>
             </div>
           </div>
           
